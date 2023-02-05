@@ -1,8 +1,9 @@
 import os
 from flask import Flask, render_template
+import random
 
 app = Flask(__name__)
-a = 1+2
+a = random.random()
 @app.route('/')
 def hello_world():
     return render_template('index.html', test=a)
