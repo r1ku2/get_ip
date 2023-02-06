@@ -1,18 +1,25 @@
-import os
-from flask import Flask, render_template, request
-import random
-import requests
-
+from flask import Flask, render_template, request, make_response
 app = Flask(__name__)
-url = "https://www.php.net/manual/ja/function.apache-response-headers.php"
 
-response = requests.head(url)
-a =response.headers
-b = 1
-@app.route('/')
+@app.route("/")
 def hello_world():
-    return render_template('index.html', test=a, test_2=b)
+    return "<p>Hello, World!</p>"
 
+@app.route("/hoge")
+def hoge_hoge():
+    a = request.url
+    return "<p>hoge, hoge!</p>" + str(a)
 
-if __name__ == '__main__':
+@app.route("/hello")
+def hella_world():
+    b = 1
+    return render_template("index.html", test=b)
+
+@app.route("/res")
+def main():
+    resp = make_response("OK")
+    resp.headers["X-TEST-HEADER"] = "This is test header."
+    return resp
+
+if __name__ == "__main__":
     app.run()
