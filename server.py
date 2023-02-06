@@ -8,9 +8,9 @@ url = "https://www.php.net/manual/ja/function.apache-response-headers.php"
 url_2 = request.url
 response = requests.head(url)
 a =response.headers
-
-response = requests.head(url_2)
-b =response.headers
+b=url_2
+#response = requests.head(url_2)
+#b =response.headers
 
 @app.route('/')
 def hello_world():
