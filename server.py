@@ -12,7 +12,7 @@ def hello_world():
 def hoge_hoge():
     a = request.headers["X-forwarded-For"]
     if a != None:
-        return "<p>hoge, hoge!</p>" + str(a)
+        return "<p>X-forwarded-For</p>" + str(a)
     return "<p> None </p>"
 
 @app.route("/hello")
