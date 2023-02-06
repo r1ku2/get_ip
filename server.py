@@ -5,17 +5,15 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
-    return "<p>Hello, World!</p>"
+    c = dict(request.headers)
+    return c
 
-@app.route("/hoge")
+@app.route("/xfor")
 def hoge_hoge():
-    url = request.url
-    a = request.headers["Host"]
-    response = requests.head(url)
-    #header = requests.get(url).headers
-    print(response.headers)
-    print(url)
-    return "<p>hoge, hoge!</p>" + str(url) + "<p>hoge, hoge</p>"  + str(a)
+    a = request.headers["X-forwarded-For"]
+    if a != None:
+        return ""<p>hoge, hoge!</p>" + str(a)
+    return "<p> None </p>"
 
 @app.route("/hello")
 def hella_world():
