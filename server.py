@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request, make_response
+import requests
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -7,8 +9,13 @@ def hello_world():
 
 @app.route("/hoge")
 def hoge_hoge():
-    a = request.url
-    return "<p>hoge, hoge!</p>" + str(a)
+    url = request.url
+    a = request.headers["Host"]
+    response = requests.head(url)
+    #header = requests.get(url).headers
+    print(response.headers)
+    print(url)
+    return "<p>hoge, hoge!</p>" + str(url) + "<p>hoge, hoge</p>"  + str(a)
 
 @app.route("/hello")
 def hella_world():
