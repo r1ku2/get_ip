@@ -7,9 +7,9 @@ def hello_world():
 
 @app.route("/xfor")
 def get_xfor():
-    a = request.headers["X-forwarded-For"]
+    a = request.headers["X-Forwarded-For"]
     if a != None:
-        return "<p>hoge, hoge!</p>" + str(a)
+        return "<p>X-Forwarded-For</p>" + str(a)
     return "<p> None </p>"
 
 if __name__ == '__main__':
