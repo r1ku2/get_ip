@@ -1,14 +1,17 @@
 import os
 from flask import Flask, render_template
 
-app = Flask(__name__)
-@app.route('/')
+@app.route("/")
 def hello_world():
-    return render_template('index.html')
+    c = dict(request.headers)
+    return c
 
-@app.route("/hello")
-def hella_world():
-    return "Hello world"
+@app.route("/xfor")
+def get_xfor():
+    a = request.headers["X-forwarded-For"]
+    if a != None:
+        return "<p>hoge, hoge!</p>" + str(a)
+    return "<p> None </p>"
 
 if __name__ == '__main__':
     app.run()
